@@ -328,7 +328,7 @@ export class HeaderView extends Component {
                     className="dashButtons"
                     activeClassName="activeTab"
                   >
-                    渠道
+                    通道
                   </NavLink>
                 </li>
 

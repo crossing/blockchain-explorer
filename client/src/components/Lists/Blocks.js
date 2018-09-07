@@ -77,7 +77,7 @@ class Blocks extends Component {
         width: 150
       },
       {
-        Header: "渠道编号",
+        Header: "通道编号",
         accessor: "channelname",
         filterMethod: (filter, rows) =>
           matchSorter(

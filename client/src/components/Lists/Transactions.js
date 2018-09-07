@@ -55,7 +55,7 @@ class Transactions extends Component {
         filterAll: true
       },
       {
-        Header: "渠道名称",
+        Header: "通道名称",
         accessor: "channelname",
         filterMethod: (filter, rows) =>
           matchSorter(

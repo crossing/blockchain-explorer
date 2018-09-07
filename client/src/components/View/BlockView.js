@@ -69,7 +69,7 @@ class BlockView extends Component {
                 <Table striped hover responsive className="table-striped">
                   <tbody>
                     <tr>
-                      <th>渠道名称:</th>
+                      <th>通道名称:</th>
                       <td>{blockHash.channelname}</td>
                     </tr>
                     <tr>
