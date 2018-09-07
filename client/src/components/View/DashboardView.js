@@ -48,7 +48,7 @@ export class DashboardView extends Component {
       ) {
         const block = blockList[i];
         const notify = {
-          title: `Block ${block.blocknum} `,
+          title: `区块 ${block.blocknum} `,
           type: "block",
           time: block.createdt,
           txcount: block.txcount,

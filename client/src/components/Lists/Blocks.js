@@ -192,10 +192,14 @@ class Blocks extends Component {
     ];
   };
 
+
+
   render() {
+    const translations = {previousText: '上一页', nextText: '下一页', loadingText: '加载中',pageText: 'Page',ofText: 'of',rowsText: '行每页',noDataText: '数据未找到',};
+
     return (
       <div>
-        <ReactTable
+        <ReactTable {...translations}
           data={this.props.blockList}
           columns={this.reactTableSetup()}
           defaultPageSize={10}
