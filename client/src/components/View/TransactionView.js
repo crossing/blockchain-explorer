@@ -24,10 +24,33 @@ const styles = theme => ({
   }
 });
 const reads = {
-  color: "#2AA233"
+  color: "#2AA233",
+  maxWidth: "20%",
+  wordWrap: "normal",
+  display: "inline-block",
 };
 const writes = {
-  color: "#DD8016"
+  color: "#DD8016",
+  wordWrap: "normal",
+  display: "inline-block",
+  maxWidth: "20%"
+};
+
+const writes_td = {
+  display: "inline-block",
+  maxWidth: "80%"
+};
+const writes_ul = {
+  maxWidth: "100%"
+};
+const width_style = {
+  wordWrap: "normal",
+  display: "inline-block",
+  maxWidth: "80%"
+};
+const tbody_style = {
+  width: "100%",
+  display: "block"
 };
 
 export class TransactionView extends Component {
@@ -86,10 +109,10 @@ export class TransactionView extends Component {
               </CardTitle>
               <CardBody>
                 <Table striped hover responsive className="table-striped">
-                  <tbody>
+                  <tbody style={tbody_style}>
                     <tr>
-                      <th>交易ID:</th>
-                      <td>
+                      <th style={width_style}>交易ID:</th>
+                      <td style={writes_td}>
                         {this.props.transaction.txhash}
                         <button className="copyBtn">
                           <div className="copyMessage">Copy</div>
@@ -101,32 +124,32 @@ export class TransactionView extends Component {
                       </td>
                     </tr>
                     <tr>
-                      <th>验证码:</th>
-                      <td>{this.props.transaction.validation_code}</td>
+                      <th style={width_style}>验证码:</th>
+                      <td style={writes_td}>{this.props.transaction.validation_code}</td>
                     </tr>
                     <tr>
-                      <th>建议哈希:</th>
-                      <td>{this.props.transaction.payload_proposal_hash}</td>
+                      <th style={width_style}>建议哈希:</th>
+                      <td style={writes_td}>{this.props.transaction.payload_proposal_hash}</td>
                     </tr>
                     <tr>
-                      <th>MSP创建者:</th>
-                      <td>{this.props.transaction.creator_msp_id}</td>
+                      <th style={width_style}>MSP创建者:</th>
+                      <td style={writes_td}>{this.props.transaction.creator_msp_id}</td>
                     </tr>
                     <tr>
-                      <th>背书节点:</th>
-                      <td>{this.props.transaction.endorser_msp_id}</td>
+                      <th style={width_style}>背书节点:</th>
+                      <td style={writes_td}>{this.props.transaction.endorser_msp_id}</td>
                     </tr>
                     <tr>
-                      <th>链码名称:</th>
-                      <td>{this.props.transaction.chaincodename}</td>
+                      <th style={width_style}>链码名称:</th>
+                      <td style={writes_td}>{this.props.transaction.chaincodename}</td>
                     </tr>
                     <tr>
-                      <th>交易类型:</th>
-                      <td>{this.props.transaction.type}</td>
+                      <th style={width_style}>交易类型:</th>
+                      <td style={writes_td}>{this.props.transaction.type}</td>
                     </tr>
                     <tr>
-                      <th>交易时间:</th>
-                      <td>
+                      <th style={width_style}>交易时间:</th>
+                      <td style={writes_td}>
                         {moment(this.props.transaction.createdt)
                           .tz(moment.tz.guess())
                           .format("M-D-YYYY h:mm A zz")}
@@ -134,7 +157,7 @@ export class TransactionView extends Component {
                     </tr>
                     <tr>
                       <th style={reads}>读取信息:</th>
-                      <td>
+                      <td style={writes_td}>
                         {" "}
                         {this.props.transaction.read_set.map(function(
                           item,
@@ -178,7 +201,7 @@ export class TransactionView extends Component {
                     </tr>
                     <tr>
                       <th style={writes}>写入信息:</th>
-                      <td>
+                      <td style={writes_td}>
                         {" "}
                         {this.props.transaction.write_set.map(function(
                           item,
@@ -195,7 +218,7 @@ export class TransactionView extends Component {
                                 {" "}
                                 {item.chaincode}
                               </Typography>
-                              <ul>
+                              <ul style={writes_td}>
                                 {item.set.map(function(x, index) {
                                   return x === null ? (
                                     ""
