@@ -70,7 +70,7 @@ export class ChartStats extends Component {
 
         return {
         datetime: moment(data.datetime)
-          .tz(moment.tz.guess())
+          .tz("Asia/Shanghai")
           .format('h:mm A'),
           count: data.count
       };

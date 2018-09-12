@@ -30,7 +30,7 @@ const channels = () => (dispatch) => {
     .then(resp => {
       resp['channels'].forEach(element => {
         element.createdat = moment(element.createdat)
-          .tz(moment.tz.guess())
+          .tz("Asia/Shanghai")
           .format("M-D-YYYY h:mm A zz");
       })
 
@@ -63,7 +63,7 @@ const transactionList = (channel) => (dispatch) => {
     .then(resp => {
       resp.rows.forEach(element => {
         element.createdt = moment(element.createdt)
-          .tz(moment.tz.guess())
+          .tz("Asia/Shanghai")
           .format("M-D-YYYY h:mm A zz");
       })
 

@@ -94,11 +94,6 @@ export class LandingPage extends Component {
       <div className="landingBackground">
         <div className="landing" >
           <img src={Logo} style={this.state.logoStyle} alt="Hyperledger Logo" />
-          <Slider {...this.state.settings}>
-            <div><h3>ACCESSING THE NETWORK</h3></div>
-            <div><h3>CONNECTING TO CHANNEL</h3></div>
-            <div><h3>LOADING BLOCKS</h3></div>
-          </Slider>
         </div>
       </div>
     );

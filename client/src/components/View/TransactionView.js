@@ -151,7 +151,7 @@ export class TransactionView extends Component {
                       <th style={width_style}>交易时间:</th>
                       <td style={writes_td}>
                         {moment(this.props.transaction.createdt)
-                          .tz(moment.tz.guess())
+                          .tz("Asia/Shanghai")
                           .format("M-D-YYYY h:mm A zz")}
                       </td>
                     </tr>
