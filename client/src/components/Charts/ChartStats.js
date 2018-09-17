@@ -51,6 +51,7 @@ export class ChartStats extends Component {
     setInterval(() => {
       this.syncData(this.props.currentChannel);
     }, 60000);
+    // console.log(this.props.blockPerHour.rows)
   }
 
   syncData = currentChannel => {
