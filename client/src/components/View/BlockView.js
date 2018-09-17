@@ -5,7 +5,7 @@
 import React, { Component } from "react";
 import FontAwesome from "react-fontawesome";
 import { CopyToClipboard } from "react-copy-to-clipboard";
-
+import moment from "moment-timezone";
 import {
   Table,
   Card,
@@ -82,7 +82,14 @@ class BlockView extends Component {
                     </tr>
                     <tr>
                       <th>创建时间</th>
-                      <td>{blockHash.createdt}</td>
+                      {/* <td>{blockHash.createdt}</td> */}
+
+
+                      <td>
+                        {moment(blockHash.createdt)
+                          .tz(moment.tz.guess())
+                          .format("M-D-YYYY h:mm A zz")}
+                      </td>
                     </tr>
 
                     <tr>

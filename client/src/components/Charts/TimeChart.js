@@ -15,7 +15,6 @@ import {
 import Card, { CardContent } from "material-ui/Card";
 
 const TimeChart = ({ chartData }) => {
-
   return (
     <div>
       <Card>
