@@ -283,7 +283,7 @@ export class HeaderView extends Component {
                     className="dashButtons"
                     activeClassName="activeTab"
                   >
-                    仪表盘
+                    首页
                   </NavLink>
                 </li>
                 {/* <li>
