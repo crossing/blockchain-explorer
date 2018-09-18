@@ -124,8 +124,8 @@ class MetricService {
     getTxByMinute(channelName, hours) {
       let sqlPerMinute = ` with minutes as (
             select generate_series(
-              date_trunc('min', now()) - '${hours}hour'::interval,
-              date_trunc('min', now()),
+              date_trunc('min', now() AT TIME ZONE 'UTC') - '${hours}hour'::interval,
+              date_trunc('min', now() AT TIME ZONE 'UTC'),
               '1 min'::interval
             ) as datetime
           )
@@ -143,8 +143,8 @@ class MetricService {
     getTxByHour(channelName, day) {
       let sqlPerHour = ` with hours as (
             select generate_series(
-              date_trunc('hour', now()) - '${day}day'::interval,
-              date_trunc('hour', now()),
+              date_trunc('hour', now() AT TIME ZONE 'UTC') - '${day}day'::interval,
+              date_trunc('hour', now() AT TIME ZONE 'UTC'),
               '1 hour'::interval
             ) as datetime
           )
@@ -162,8 +162,8 @@ class MetricService {
     getTxByDay(channelName, days) {
       let sqlPerDay = ` with days as (
             select generate_series(
-              date_trunc('day', now()) - '${days}day'::interval,
-              date_trunc('day', now()),
+              date_trunc('day', now() AT TIME ZONE 'UTC') - '${days}day'::interval,
+              date_trunc('day', now() AT TIME ZONE 'UTC'),
               '1 day'::interval
             ) as datetime
           )
@@ -181,8 +181,8 @@ class MetricService {
     getTxByWeek(channelName, weeks) {
       let sqlPerWeek = ` with weeks as (
             select generate_series(
-              date_trunc('week', now()) - '${weeks}week'::interval,
-              date_trunc('week', now()),
+              date_trunc('week', now() AT TIME ZONE 'UTC') - '${weeks}week'::interval,
+              date_trunc('week', now() AT TIME ZONE 'UTC'),
               '1 week'::interval
             ) as datetime
           )
@@ -200,8 +200,8 @@ class MetricService {
     getTxByMonth(channelName, months) {
       let sqlPerMonth = ` with months as (
             select generate_series(
-              date_trunc('month', now()) - '${months}month'::interval,
-              date_trunc('month', now()),
+              date_trunc('month', now() AT TIME ZONE 'UTC') - '${months}month'::interval,
+              date_trunc('month', now() AT TIME ZONE 'UTC'),
               '1 month'::interval
             ) as datetime
           )
@@ -220,8 +220,8 @@ class MetricService {
     getTxByYear(channelName, years) {
       let sqlPerYear = ` with years as (
             select generate_series(
-              date_trunc('year', now()) - '${years}year'::interval,
-              date_trunc('year', now()),
+              date_trunc('year', now() AT TIME ZONE 'UTC') - '${years}year'::interval,
+              date_trunc('year', now() AT TIME ZONE 'UTC'),
               '1 year'::interval
             ) as year
           )
@@ -241,8 +241,8 @@ class MetricService {
     getBlocksByMinute(channelName, hours) {
       let sqlPerMinute = ` with minutes as (
             select generate_series(
-              date_trunc('min', now()) - '${hours} hour'::interval,
-              date_trunc('min', now()),
+              date_trunc('min', now() AT TIME ZONE 'UTC') - '${hours} hour'::interval,
+              date_trunc('min', now() AT TIME ZONE 'UTC'),
               '1 min'::interval
             ) as datetime
           )
@@ -260,8 +260,8 @@ class MetricService {
     getBlocksByHour(channelName, days) {
       let sqlPerHour = ` with hours as (
             select generate_series(
-              date_trunc('hour', now()) - '${days}day'::interval,
-              date_trunc('hour', now()),
+              date_trunc('hour', now() AT TIME ZONE 'UTC') - '${days}day'::interval,
+              date_trunc('hour', now() AT TIME ZONE 'UTC'),
               '1 hour'::interval
             ) as datetime
           )
@@ -279,8 +279,8 @@ class MetricService {
     getBlocksByDay(channelName, days) {
       let sqlPerDay = `  with days as (
             select generate_series(
-              date_trunc('day', now()) - '${days}day'::interval,
-              date_trunc('day', now()),
+              date_trunc('day', now() AT TIME ZONE 'UTC') - '${days}day'::interval,
+              date_trunc('day', now() AT TIME ZONE 'UTC'),
               '1 day'::interval
             ) as datetime
           )
@@ -298,8 +298,8 @@ class MetricService {
     getBlocksByWeek(channelName, weeks) {
       let sqlPerWeek = ` with weeks as (
             select generate_series(
-              date_trunc('week', now()) - '${weeks}week'::interval,
-              date_trunc('week', now()),
+              date_trunc('week', now() AT TIME ZONE 'UTC') - '${weeks}week'::interval,
+              date_trunc('week', now() AT TIME ZONE 'UTC'),
               '1 week'::interval
             ) as datetime
           )
@@ -317,8 +317,8 @@ class MetricService {
     getBlocksByMonth(channelName, months) {
       let sqlPerMonth = `  with months as (
             select generate_series(
-              date_trunc('month', now()) - '${months}month'::interval,
-              date_trunc('month', now()),
+              date_trunc('month', now() AT TIME ZONE 'UTC') - '${months}month'::interval,
+              date_trunc('month', now() AT TIME ZONE 'UTC'),
               '1 month'::interval
             ) as datetime
           )
@@ -336,8 +336,8 @@ class MetricService {
     getBlocksByYear(channelName, years) {
       let sqlPerYear = ` with years as (
             select generate_series(
-              date_trunc('year', now()) - '${years}year'::interval,
-              date_trunc('year', now()),
+              date_trunc('year', now() AT TIME ZONE 'UTC') - '${years}year'::interval,
+              date_trunc('year', now() AT TIME ZONE 'UTC'),
               '1 year'::interval
             ) as year
           )

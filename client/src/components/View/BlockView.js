@@ -87,7 +87,7 @@ class BlockView extends Component {
 
                       <td>
                         {moment(blockHash.createdt)
-                          .tz(moment.tz.guess())
+                          .tz("Asia/Shanghai")
                           .format("M-D-YYYY h:mm A zz")}
                       </td>
                     </tr>
