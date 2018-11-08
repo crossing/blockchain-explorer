@@ -52,7 +52,6 @@ const tbody_style = {
   width: "100%",
   display: "block"
 };
-
 export class TransactionView extends Component {
   constructor(props, context) {
     super(props, context);
