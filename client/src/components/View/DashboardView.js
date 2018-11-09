@@ -31,7 +31,7 @@ const verify_block = {
 paddingBottom: '8px',minHeight: '100px',
 marginBottom:'8px',
 boxSizing: 'border-box',
-minHeight:'180px'
+minHeight:'160px'
 }
 const verify_block_second = {minHeight:'280px'}
 const verify_block_last = {borderBottom:'none',marginBottom:'0',paddingBottom: '0'}
@@ -170,10 +170,8 @@ export class DashboardView extends Component {
     var time = 100
       if(i>100){
         // $(".ok").html("加载完成").fadeIn("slow");
-     
         if(item === 'first'){
-          this.setState({verify_progress: 'none',hash_block1: 'block',})
-          
+          this.setState({verify_progress: 'none',hash_block1: 'block',}) 
         }
         if(item === 'second'){
           this.setState({verify_progress: 'none',hash_block2: 'block',})
@@ -185,13 +183,11 @@ export class DashboardView extends Component {
         }
         return;
       }
-  
       if(i<=100){
         setTimeout(()=>this.getProgres(item),time)
         this.add(i);
         i++;
       }
-    /*调用xh()函数*/
   }
   componentWillReceiveProps(nextProps) {
     this.setNotifications(this.props.blockList);
@@ -257,7 +253,7 @@ export class DashboardView extends Component {
       this.getProgres('first')
     // });
      setTimeout(()=>this.getSecond(), 11000)//数字
-     this.GetQueryString()
+    //  this.GetQueryString()
   }
   getSecond = () => { 
     this.timer = setInterval(()=>this.getAmount(), 100)//数字
@@ -634,19 +630,12 @@ export class DashboardView extends Component {
                   <LinearProgress color="secondary" variant="determinate" value={this.state.completed} />
                 </div> */}
                 <div className="box">
-
-                    <div className="ok"></div>
-
-                    <div className="tbox">
-
-                        <div className="tiao">
-                        {/* <img src={pro}/>
-                        <img src={bak}/> */}
-                        </div>
-
-                    </div>
-
-                    </div>
+                  <div className="ok"></div>
+                  <div className="tbox">
+                      <div className="tiao">
+                      </div>
+                  </div>
+                </div>
               </div>
               <div style={{marginTop: '20px',textAlign: 'center',display: this.state.verify_button}}>
                 <Button variant="contained" color="primary" style={{fontSize: '14px'}} onClick={()=>{this.setState({verify_display: 'none'})}}> 确定 </Button>
