@@ -211,6 +211,7 @@ export class DashboardView extends Component {
     // return context == null || context == "" || context == "undefined" ? "" : context;
   
     let str = window.location.href.split('?')[1]
+    console.log(window.location.href.split('?'))
     if(str){
         let arr = str.split('&')
         let obj = {}
@@ -219,6 +220,7 @@ export class DashboardView extends Component {
           obj[item[0]] = item[1]
         }
         this.setState({url_data: obj})
+        console.log(obj)
     }
   }
   progress = () => {
