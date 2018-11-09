@@ -603,7 +603,7 @@ export class DashboardView extends Component {
                 </div>
               </div>
               <div style={verify_block_right}>
-                <div style={{background:'#d6eeba',display: this.state.hash_block3}}>
+                <div style={{background:'rgb(255, 254, 205)',display: this.state.hash_block3}}>
                   <h2 style={{...verify_text_title,...verify_text_title_}}>验证结果：</h2>
                   <img src = {re_status[result].src} style={{width:'40px',display:'block',margin:"0 auto"}}/>
                   <h3 style={{marginBottom:'0',padding:'10px 42px',textAlign:'center',fontWeight:'noremal',color:"#333",fontSize:'14px',lineHeight:'1.4'}}>
