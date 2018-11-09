@@ -211,16 +211,29 @@ export class DashboardView extends Component {
     // return context == null || context == "" || context == "undefined" ? "" : context;
   
     let str = window.location.href.split('?')[1]
-    console.log(window.location.href.split('?'))
     if(str){
-        let arr = str.split('&')
+        let str_= decodeURI(str)
+        let arr = str_.split('&')
         let obj = {}
         for(let j=0 ;j<arr.length;j++){
           let item = arr[j].split('=')
           obj[item[0]] = item[1]
         }
         this.setState({url_data: obj})
-        console.log(obj)
+        let obj_  ={
+          encrypt_type: obj.encrypt_type,
+          stock_proof_number: obj.stock_proof_number,
+          buyer: obj.buyer,
+          product_varieties: obj.product_varieties,
+          product_name: obj.product_name,
+          product_amount: obj.product_amount,
+          unit: obj.unit,
+          warehouse: obj.warehouse,
+          salt: obj.salt,
+          type: obj.type,
+          tx_id: obj.tx_id
+        }
+        this.getData(obj_)
     }
   }
   progress = () => {
@@ -251,7 +264,6 @@ export class DashboardView extends Component {
   };
   
   getContent = () =>{
-    this.getData()
     this.setState({dialogContent: true,dialogAsk:false,verify_display: 'flex'})
   	
       this.getProgres('first')
@@ -272,20 +284,7 @@ export class DashboardView extends Component {
     this.setState({hash_left3: 'block',verify_progress:'block',verify_text_html: 'three'})
     this.getProgres('three')
   }
-  getData = ()=>{
-     let obj  ={
-      encrypt_type: '1',
-      stock_proof_number: 'ff80808165f461a60166',
-      buyer: 'M0001339',
-      product_varieties: '',
-      product_name: '铜杆',
-      product_amount: '100.596',
-      unit: '件',
-      warehouse: 'ck00064',
-      random_string: 'Mj3htz7m8e5o0uf1',
-      type: '',
-      tx_id: '8f6b749073a1d9960a5b1c9eebf3ee349be70c0011d4175364e89eefb7919052'
-    }
+  getData = (obj)=>{
     $.ajax({
       url:'/api/v1/verify_result/',
       data: obj,
