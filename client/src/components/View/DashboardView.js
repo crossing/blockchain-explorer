@@ -253,7 +253,7 @@ export class DashboardView extends Component {
       this.getProgres('first')
     // });
      setTimeout(()=>this.getSecond(), 11000)//数字
-    //  this.GetQueryString()
+     this.GetQueryString()
   }
   getSecond = () => { 
     this.timer = setInterval(()=>this.getAmount(), 100)//数字
