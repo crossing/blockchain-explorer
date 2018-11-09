@@ -209,15 +209,17 @@ export class DashboardView extends Component {
     // reg = null;
     // r = null;
     // return context == null || context == "" || context == "undefined" ? "" : context;
+  
     let str = window.location.href.split('?')[1]
-
-    let arr = str.split('&')
-    let obj = {}
-    for(let j=0 ;j<arr.length;j++){
-      let item = arr[j].split('=')
-      obj[item[0]] = item[1]
+    if(str){
+        let arr = str.split('&')
+        let obj = {}
+        for(let j=0 ;j<arr.length;j++){
+          let item = arr[j].split('=')
+          obj[item[0]] = item[1]
+        }
+        this.setState({url_data: obj})
     }
-    this.setState({url_data: obj})
   }
   progress = () => {
     const { completed } = this.state;
@@ -474,21 +476,21 @@ export class DashboardView extends Component {
             </CardTitle>
             <div style={verify_block}>
               <div style={verify_block_left}>
-                <div style={verify_info}>仓单编号：<span>{url_data.stock_proof_number}</span></div>
+                <div style={verify_info}>仓单编号：<span>{url_data.stock_proof_number || '-'}</span></div>
                 <Row>
                   <Col sm="6" >
-                    <p style={verify_info}>仓库信息：<span>{url_data.warehouse_info}</span></p>
-                    <p style={verify_info}>仓库名称：<span>{url_data.warehouse}</span></p>
-                    <p style={verify_info}>库位：<span>{url_data.location}</span></p>
-                    <p style={verify_info}>品牌：<span>{url_data.product_brand}</span></p>
-                    <p style={verify_info}>入库重量：<span>{url_data.product_amount}</span></p>
+                    <p style={verify_info}>仓库信息：<span>{url_data.warehouse_info || '-'}</span></p>
+                    <p style={verify_info}>仓库名称：<span>{url_data.warehouse || '-'}</span></p>
+                    <p style={verify_info}>库位：<span>{url_data.location || '-'}</span></p>
+                    <p style={verify_info}>品牌：<span>{url_data.product_brand || '-'}</span></p>
+                    <p style={verify_info}>入库重量：<span>{url_data.product_amount || '-'}</span></p>
                   </Col>
                   <Col sm="6">
-                    <p style={verify_info}>货主：<span>{url_data.cargo_owner}</span></p>
-                    <p style={verify_info}>品名：<span>{url_data.product_name}</span></p>
-                    <p style={verify_info}>省份：<span>{url_data.provinces}</span></p>
-                    <p style={verify_info}>城市：<span>{url_data.city}</span></p>
-                    <p style={verify_info}>具体位置：<span>{url_data.warehouse_location}</span></p>
+                    <p style={verify_info}>货主：<span>{url_data.cargo_owner || '-'}</span></p>
+                    <p style={verify_info}>品名：<span>{url_data.product_name || '-'}</span></p>
+                    <p style={verify_info}>省份：<span>{url_data.provinces || '-'}</span></p>
+                    <p style={verify_info}>城市：<span>{url_data.city || '-'}</span></p>
+                    <p style={verify_info}>具体位置：<span>{url_data.warehouse_location || '-'}</span></p>
                   </Col>
                 </Row>
               </div>
