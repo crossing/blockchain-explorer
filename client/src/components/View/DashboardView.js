@@ -477,7 +477,7 @@ export class DashboardView extends Component {
             </CardTitle>
             <div style={verify_block}>
               <div style={verify_block_left}>
-                <div style={verify_info}>仓单编号：<span>{url_data.stock_proof_number || '-'}</span></div>
+                <div style={verify_info}>仓单编号：<span>{url_data.sindentureno || '-'}</span></div>
                 <Row>
                   <Col sm="6" >
                     <p style={verify_info}>仓库信息：<span>{url_data.warehouse_info || '-'}</span></p>
