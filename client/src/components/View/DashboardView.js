@@ -597,13 +597,13 @@ export class DashboardView extends Component {
               <div style={{...verify_block_left,...verify_block_left_three}}>
                 <div style={{paddingRight: '30px'}}>
                   <div style={{width: '50%',float:'left',boxSizing: 'border-box',paddingRight: '30px'}}>
-                    <p style={{color:'#666',fontSize: '12px',marginBottom: '10px',paddingTop: '10px',height:'50px'}}>
+                    <p style={{color:'#666',fontSize: '12px',marginBottom: '0',paddingTop: '10px',height:'50px'}}>
                     根据货主提供的salt值仓单实时数据生成唯一的HASH值
                     </p>
                     <div style={verify_hash}>{this.state.hash_string}</div>
                   </div>
                   <div style={{width: '50%',float:'left'}}>
-                    <p style={{color:'#666',fontSize: '12px',marginBottom: '10px',paddingTop: '10px',height:'50px'}}>
+                    <p style={{color:'#666',fontSize: '12px',marginBottom: '0',paddingTop: '10px',height:'50px'}}>
                     获取区块链上仓单最后一次更新时的HASH值
                     </p>
                     <div style={verify_hash}>{this.state.hash_full}</div>
