@@ -169,7 +169,7 @@ export class DashboardView extends Component {
   getProgres (item) {
     /*add——创建tbx下的div加文字和变宽度的方法*/
     /*创建方法（i++循环起来）*/  
-    var time = 100
+    var time = 60
       if(i>100){
         // $(".ok").html("加载完成").fadeIn("slow");
         if(item === 'first'){
@@ -180,7 +180,8 @@ export class DashboardView extends Component {
           clearInterval(this.timer)
         }
         if(item === 'three'){
-          this.setState({verify_progress: 'none',hash_block3: 'block',verify_button: 'block'})
+          let result = this.state.result
+          this.setState({verify_progress: 'none',hash_block3: 'block',verify_button: 'block',verify_text_html: result})
           time = 30
         }
         return;
@@ -409,17 +410,17 @@ export class DashboardView extends Component {
   getContent = () =>{
     this.setState({dialogContent: true,dialogAsk:false,verify_display: 'flex'})
   	
-      this.getProgres('first')
+    this.getProgres('first')
     // });
-     setTimeout(()=>this.getSecond(), 11000)//数字
-     this.GetQueryString()
+    setTimeout(()=>this.getSecond(), 7000)//数字
+    this.GetQueryString()
   }
   getSecond = () => { 
-    this.timer = setInterval(()=>this.getAmount(), 250)//数字
+    this.timer = setInterval(()=>this.getAmount(), 160)//数字
     i = 0
     this.setState({hash_left2: 'block',verify_progress:'block',verify_text_html: 'second'})
     this.getProgres('second')
-    setTimeout(()=>this.getThree(), 11000)//数字
+    setTimeout(()=>this.getThree(), 7000)//数字
   }
  
   getThree = () => {
@@ -511,7 +512,9 @@ export class DashboardView extends Component {
     const verify_txt = {
       'first': '正在根据仓单信息和SALT值生成HASH...',
       'second': '正在搜索该笔仓单链上的HASH值...',
-      'three': '这时候显示的api的数据，对比结果是否一致'
+      'three': '仓单信息HASH值与链上HASH比对中...',
+      'ok': 'HASH值对比完毕：两组HASH完全一致，仓单数据和加佳有色链上数据完全相同',
+      'error': 'HASH值对比完毕：两组HASH不一致，仓单数据和加佳有色链上数据不同'
     }
     const {result, verify_text_html,url_data} = this.state
     if (this.state.hasDbError) {
@@ -767,7 +770,7 @@ export class DashboardView extends Component {
           </Card>
 
           <div style={{position:'fixed',zIndex: '1001',alignItems:'center',justifyContent:'center',left:0,right:0,top:0,bottom:0,display: this.state.verify_display}}>
-            <div style={{width:'423px',height:'150px',background:'rgba(0,0,0,0.5)',border:'1px solid #d3d3d3',borderRadius:'2px',boxShadow:'0 0 16px 0 hsla(0,0%,77%,.5)',padding:'10px'}}>
+            <div style={{width:'423px',height:'180px',background:'rgba(0,0,0,0.5)',border:'1px solid #d3d3d3',borderRadius:'2px',boxShadow:'0 0 16px 0 hsla(0,0%,77%,.5)',padding:'10px'}}>
               <div style={{color:'#fff',fontSize:'14px',padding:'5px 0',borderBottom:'1px solid #bebdc1',fontWeight:'bold',textAlign:'center'}}>
                 区块链仓单验证
               </div>
