@@ -133,7 +133,7 @@ export class DashboardView extends Component {
     this.state = {
       notifications: [],
       hasDbError: false,
-      dialogAsk: true,
+      dialogAsk: false,
       dialogContent: false,
       verify_display: 'none',//flex
       verify_hash_text: 'block',
@@ -211,7 +211,7 @@ export class DashboardView extends Component {
     // return context == null || context == "" || context == "undefined" ? "" : context;
   
     let str = window.location.href.split('?')[1]
-    if(str){
+    // if(str){
         let str_= decodeURI(str)
         let arr = str_.split('&')
         let obj = {}
@@ -234,7 +234,7 @@ export class DashboardView extends Component {
           tx_id: obj.tx_id
         }
         this.getData(obj_)
-    }
+    // }
   }
   progress = () => {
     const { completed } = this.state;
@@ -317,7 +317,12 @@ export class DashboardView extends Component {
 
   componentDidMount() {
     this.setNotifications(this.props.blockList);
-    let str = 'http://www.maidq.com/index.html?ver=1.0&id=6#imhere'
+    let str = window.location.href.split('?')[1]
+    if(str){
+      this.setState({dialogAsk: true})
+    }else{
+      this.setState({dialogAsk: false})
+    }
   }
 
   setNotifications = blockList => {
@@ -592,13 +597,13 @@ export class DashboardView extends Component {
               <div style={{...verify_block_left,...verify_block_left_three}}>
                 <div style={{paddingRight: '30px'}}>
                   <div style={{width: '50%',float:'left',boxSizing: 'border-box',paddingRight: '30px'}}>
-                    <p style={{color:'#666',fontSize: '12px',marginBottom: '10px',paddingTop: '15px'}}>
+                    <p style={{color:'#666',fontSize: '12px',marginBottom: '10px',paddingTop: '10px',height:'50px'}}>
                     根据货主提供的salt值仓单实时数据生成唯一的HASH值
                     </p>
                     <div style={verify_hash}>{this.state.hash_string}</div>
                   </div>
                   <div style={{width: '50%',float:'left'}}>
-                    <p style={{color:'#666',fontSize: '12px',marginBottom: '10px',paddingTop: '15px'}}>
+                    <p style={{color:'#666',fontSize: '12px',marginBottom: '10px',paddingTop: '10px',height:'50px'}}>
                     获取区块链上仓单最后一次更新时的HASH值
                     </p>
                     <div style={verify_hash}>{this.state.hash_full}</div>
