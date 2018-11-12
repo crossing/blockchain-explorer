@@ -46,7 +46,7 @@ const verify_text = {
   padding: '0 10px',
   background: '#d6eeba'
 }
-const verify_text_title_ = {paddingLeft:'10px'}
+const verify_text_title_ = {paddingLeft:'10px',marginBottom:'0'}
 const verify_text_title = {
   padding: '20px 0 10px 0',
   fontWeight: 'normal',
@@ -126,7 +126,7 @@ const verify_hash = {
   padding: '20px 10px',
   border: '1px solid #bebdc1',fontWeight:'bold',lineHeight:'0.8rem'
 }
-var i = 0
+var i = 0, p = 0;
 export class DashboardView extends Component {
   constructor(props) {
     super(props);
@@ -152,6 +152,8 @@ export class DashboardView extends Component {
       hash_string: '',
       hash_result: 0,
       time_shape: '',
+      time_shape_copy: '',
+      hash_full_copy: '',
       last_block: 0,
       url_data: {}
     };
@@ -246,20 +248,161 @@ export class DashboardView extends Component {
     }
   };
   getAmount = () => {
-    const result = this.state.last_block
-      
+    const result = Number(this.state.last_block)
     if( this.state.verify_block_id[3] > result){
-      this.setState({verify_block_id: [743-3,743-2,743-1,743]})
-      clearInterval(this.timer2)
+      this.setState({
+        verify_block_id: [result-3,result-2,result-1,result]
+      })
+      console.log('result',result)
     }else{
       var a =  0
       if( this.state.verify_block_id[3] == 0){
         a = 700
+        this.setState({verify_block_id: [a,a+1,a+2,a+3]})
+      }else if(this.state.verify_block_id[3] == result){
+        a =  result
+        this.setState({verify_block_id: [a-3,a-2,a-1,a]})
       }else{
-        a =  this.state.verify_block_id[3]
+         a =  this.state.verify_block_id[3]
+         this.setState({verify_block_id: [a,a+1,a+2,a+3]})
       }
-      this.setState({verify_block_id: [a,a+1,a+2,a+3]})
-     
+    }
+    const time = [
+      '2018-01-09T07:53:44.717Z',
+      '2018-12-13T05:51:11.217Z',
+      '2018-02-09T05:51:42.117Z',
+      '2018-02-12T03:23:54.717Z',
+      '2018-06-17T12:21:24.217Z',
+      '2018-09-15T03:52:34.717Z',
+      '2018-04-05T01:56:64.717Z',
+      '2018-02-12T05:53:42.117Z',
+      '2018-01-12T03:32:51.717Z',
+      '2018-02-11T07:11:34.217Z',
+      '2018-13-03T01:56:64.717Z',
+      '2018-01-05T01:56:64.717Z',
+      '2018-12-03T15:53:41.217Z',
+      '2018-02-09T05:56:42.117Z',
+      '2018-11-15T03:12:52.717Z',
+      '2018-03-09T07:13:14.317Z',
+      '2018-03-05T01:56:64.717Z',
+      '2018-01-02T03:52:54.717Z',
+      '2018-04-19T07:13:14.217Z',
+      '2018-01-09T07:53:44.717Z',
+      '2018-12-13T05:51:11.217Z',
+      '2018-02-09T05:51:42.117Z',
+      '2018-02-12T03:23:54.717Z',
+      '2018-06-17T12:21:24.217Z',
+      '2018-09-15T03:52:34.717Z',
+      '2018-04-05T01:56:64.717Z',
+      '2018-02-12T05:53:42.117Z',
+      '2018-01-12T03:32:51.717Z',
+      '2018-02-11T07:11:34.217Z',
+      '2018-13-03T01:56:64.717Z',
+      '2018-01-05T01:56:64.717Z',
+      '2018-12-03T15:53:41.217Z',
+      '2018-02-09T05:56:42.117Z',
+      '2018-11-15T03:12:52.717Z',
+      '2018-03-09T07:13:14.317Z',
+      '2018-03-05T01:56:64.717Z',
+      '2018-01-02T03:52:54.717Z',
+      '2018-04-19T07:13:14.217Z',
+      '2018-01-09T07:53:44.717Z',
+      '2018-12-13T05:51:11.217Z',
+      '2018-02-09T05:51:42.117Z',
+      '2018-02-12T03:23:54.717Z',
+      '2018-06-17T12:21:24.217Z',
+      '2018-09-15T03:52:34.717Z',
+      '2018-04-05T01:56:64.717Z',
+      '2018-02-12T05:53:42.117Z',
+      '2018-01-12T03:32:51.717Z',
+      '2018-02-11T07:11:34.217Z',
+      '2018-13-03T01:56:64.717Z',
+      '2018-01-05T01:56:64.717Z',
+      '2018-12-03T15:53:41.217Z',
+      '2018-02-09T05:56:42.117Z',
+      '2018-11-15T03:12:52.717Z',
+      '2018-03-09T07:13:14.317Z',
+      '2018-03-05T01:56:64.717Z',
+      '2018-01-02T03:52:54.717Z',
+      '2018-04-19T07:13:14.217Z',
+    ]
+    const hash = [
+        '0754c11b8e4512efdc765943a44b9770d30c21ffab0a07d5447a21e07920b968302ad7bea893bc4ef35da3awefegyji76534rewdscfvbhyjuko0987654redwsc',
+        '0754c11b8e4512efdc765943a44b9770jyhtgrfedcvgbnyjutrfdvfbnjiu76y5trfed7bea893bc4ef35da3a51f39efd3b5b0e41733c7c2b543ce3eb1d1e933d0',
+        '0754c11b8e4512efdc765943a44b9770d30c21ffab0a07d5447nbgfdvfbnjuytfrecfvgbh893bc4ef35da3a51f39efd3b5b0e41733c7c2b543ce3eb1d1e933d0',
+        '0754c11b8e4512efdc765943a44b9770d30c21ffab0a07d544btgrfvgyhtrfgbju76y5t4rewdsxac vbnjki87654rfd3b5b0e41733c7c2b543ce3eb1d1e933d0',
+        '0754c11b8e4512efdc765943a44b9770d30c21ffab0acvgtrfedcgbhygtrefcdx m,lo09i8u7y6hujklop-0o9i87efd3b5b0e41733c7c2b543ce3eb1d1e933d0',
+        '0754c11b8e4512efd765943a44b97brgfvd dcecbgefdvfer3efdvr4efdeb968302ad7bea893bc4ef35da3a51f39efd3b5b0e41733c7c2b543ce3eb1d1e933d0',
+        '075vfwdvvvfrfbhnhydfvfedv44b9770d30c21ffab0a07d5447a21e07920b968302ad7bea893bc4ef35da3a51f39efd3b5b0e41733c7c2b543ce3eb1d1e933d0',
+        '0754c11b8e4512efrt4rgrbhy7ujkmnbvfde41ffab0a07d5447a21e07920b968302ad7bea893bc4ef35da3a51f39efd3b5b0e41733c7c2b543ce3eb1d1e933d0',
+        '0754c11b8e4512efdc765943a44b97efdbbfgedbedbfdbd5447a21e07920b968302ad7bea893bc4ef35da3a51f39efd3b5b0e41733c7c2b543ce3eb1d1e933d0',
+        '0754c11b8e4512efdc765943dbhedbfngjujujujujnhg7d5447a21e07920b968302ad7bea893bc4ef35da3a51f39efd3b5b0e41733c7c2b543ce3eb1d1e933d0',
+        '0754c11b8e4512efdc765943a44b9770d30c21ffab0a07d5447a21e07920b968302ad7bea893bc4ef35da3edfbehyjujujuyhjhbgfr5c2b543ce3eb1d1e933d0',
+        '0754c11b8e4512efdc765943a44b9770d30c21ffab0a07d5447a21e07920b968302ad7bea893bc4ef35da3a51f39efy4rfgnyrhnyhyhyujuj3ce3eb1d1e933d0',
+        '0754c11b8e4512efdc765943a44b9770d30c21ffab0a07d5447a21e07920b968302ad7bea893bc4ef35da3a51f39efd3tgrehtthngfdse43weazdfb1d1e933d0',
+        '0754c11b8e4512efdc765943a44b9770d30c21ffab0a07d5447a21e07920b968302ad7bea893bc4ef35da3a51f39efd3b5b0e412wsdxnhnhvgyhgu7kukikikik',
+        '0754c11b8e4512efdc765943a44b9770d30c21ffab0a07d5447a21e07920b968302ad7bea893bc4ef35da3a51f39efd3b5b0e417wsbgtqeggtegt234rfbhy65r',
+        '0754c11b8e4512efdc765943a44b9770d30c21ffab0a07d5447a21e07920b968302ad7bea893bc4ef35da3a51f39efd3b5bqsr4tgbhnh5tgvgce3eb1d1e933d0',
+        '0754c11b8e4512efdc765943srdty6y54e3456yhgfder56tygy67u898io9l9lksdvdvgbo9iujhfgrededefdfedefdfd3b5b0e41733c7c2b543ce3eb1d1e933d0',
+        '0754c11b8e4512efdc765943a44b9770d30c21ffab0a07d5447a21e07920b968302adfgtresxsdertyujhbvcxdserfd3b5b0e41733c7c2b543ce3eb1d1e933d0',
+        '0754c11b8e4512efdc765943a44b9770d30c21ffab0a07d5447a21e07920b968302addfdredfsaertyuikjnbvcdrttr3b5b0e41733c7c2b543ce3eb1d1e933d0',
+        '0754c11b8e4512efdc765943a44b9770d30c21ffab0a07d5447a21e07920b9683efgref3efdvevrvrvggbgtbhy39efd3b5b0e41733c7c2b543ce3eb1d1e933d0',
+        '0754c11b8e4512efdc765943a44b9770d30c21ffab0a07d5447a21e07920b968302ad7bea893bc4ef35da3a51f39efd3b5b0dbgedfvcerdferrdferfbgthnhyy',
+        '0754c11b8e4512efdc765943a44b9770d30c21ffab0a07d5447a21e07920b968302ad7bea893bc4ef35da3awefegyji76534rewdscfvbhyjuko0987654redwsc',
+        '0754c11b8e4512efdc765943a44b9770jyhtgrfedcvgbnyjutrfdvfbnjiu76y5trfed7bea893bc4ef35da3a51f39efd3b5b0e41733c7c2b543ce3eb1d1e933d0',
+        '0754c11b8e4512efdc765943a44b9770d30c21ffab0a07d5447nbgfdvfbnjuytfrecfvgbh893bc4ef35da3a51f39efd3b5b0e41733c7c2b543ce3eb1d1e933d0',
+        '0754c11b8e4512efdc765943a44b9770d30c21ffab0a07d544btgrfvgyhtrfgbju76y5t4rewdsxac vbnjki87654rfd3b5b0e41733c7c2b543ce3eb1d1e933d0',
+        '0754c11b8e4512efdc765943a44b9770d30c21ffab0acvgtrfedcgbhygtrefcdx m,lo09i8u7y6hujklop-0o9i87efd3b5b0e41733c7c2b543ce3eb1d1e933d0',
+        '0754c11b8e4512efd765943a44b97brgfvd dcecbgefdvfer3efdvr4efdeb968302ad7bea893bc4ef35da3a51f39efd3b5b0e41733c7c2b543ce3eb1d1e933d0',
+        '075vfwdvvvfrfbhnhydfvfedv44b9770d30c21ffab0a07d5447a21e07920b968302ad7bea893bc4ef35da3a51f39efd3b5b0e41733c7c2b543ce3eb1d1e933d0',
+        '0754c11b8e4512efrt4rgrbhy7ujkmnbvfde41ffab0a07d5447a21e07920b968302ad7bea893bc4ef35da3a51f39efd3b5b0e41733c7c2b543ce3eb1d1e933d0',
+        '0754c11b8e4512efdc765943a44b97efdbbfgedbedbfdbd5447a21e07920b968302ad7bea893bc4ef35da3a51f39efd3b5b0e41733c7c2b543ce3eb1d1e933d0',
+        '0754c11b8e4512efdc765943dbhedbfngjujujujujnhg7d5447a21e07920b968302ad7bea893bc4ef35da3a51f39efd3b5b0e41733c7c2b543ce3eb1d1e933d0',
+        '0754c11b8e4512efdc765943a44b9770d30c21ffab0a07d5447a21e07920b968302ad7bea893bc4ef35da3edfbehyjujujuyhjhbgfr5c2b543ce3eb1d1e933d0',
+        '0754c11b8e4512efdc765943a44b9770d30c21ffab0a07d5447a21e07920b968302ad7bea893bc4ef35da3a51f39efy4rfgnyrhnyhyhyujuj3ce3eb1d1e933d0',
+        '0754c11b8e4512efdc765943a44b9770d30c21ffab0a07d5447a21e07920b968302ad7bea893bc4ef35da3a51f39efd3tgrehtthngfdse43weazdfb1d1e933d0',
+        '0754c11b8e4512efdc765943a44b9770d30c21ffab0a07d5447a21e07920b968302ad7bea893bc4ef35da3a51f39efd3b5b0e412wsdxnhnhvgyhgu7kukikikik',
+        '0754c11b8e4512efdc765943a44b9770d30c21ffab0a07d5447a21e07920b968302ad7bea893bc4ef35da3a51f39efd3b5b0e417wsbgtqeggtegt234rfbhy65r',
+        '0754c11b8e4512efdc765943a44b9770d30c21ffab0a07d5447a21e07920b968302ad7bea893bc4ef35da3a51f39efd3b5bqsr4tgbhnh5tgvgce3eb1d1e933d0',
+        '0754c11b8e4512efdc765943srdty6y54e3456yhgfder56tygy67u898io9l9lksdvdvgbo9iujhfgrededefdfedefdfd3b5b0e41733c7c2b543ce3eb1d1e933d0',
+        '0754c11b8e4512efdc765943a44b9770d30c21ffab0a07d5447a21e07920b968302adfgtresxsdertyujhbvcxdserfd3b5b0e41733c7c2b543ce3eb1d1e933d0',
+        '0754c11b8e4512efdc765943a44b9770d30c21ffab0a07d5447a21e07920b968302addfdredfsaertyuikjnbvcdrttr3b5b0e41733c7c2b543ce3eb1d1e933d0',
+        '0754c11b8e4512efdc765943a44b9770d30c21ffab0a07d5447a21e07920b9683efgref3efdvevrvrvggbgtbhy39efd3b5b0e41733c7c2b543ce3eb1d1e933d0',
+        '0754c11b8e4512efdc765943a44b9770d30c21ffab0a07d5447a21e07920b968302ad7bea893bc4ef35da3a51f39efd3b5b0dbgedfvcerdferrdferfbgthnhyy',
+        '0754c11b8e4512efdc765943a44b9770d30c21ffab0a07d5447a21e07920b968302ad7bea893bc4ef35da3awefegyji76534rewdscfvbhyjuko0987654redwsc',
+        '0754c11b8e4512efdc765943a44b9770jyhtgrfedcvgbnyjutrfdvfbnjiu76y5trfed7bea893bc4ef35da3a51f39efd3b5b0e41733c7c2b543ce3eb1d1e933d0',
+        '0754c11b8e4512efdc765943a44b9770d30c21ffab0a07d5447nbgfdvfbnjuytfrecfvgbh893bc4ef35da3a51f39efd3b5b0e41733c7c2b543ce3eb1d1e933d0',
+        '0754c11b8e4512efdc765943a44b9770d30c21ffab0a07d544btgrfvgyhtrfgbju76y5t4rewdsxac vbnjki87654rfd3b5b0e41733c7c2b543ce3eb1d1e933d0',
+        '0754c11b8e4512efdc765943a44b9770d30c21ffab0acvgtrfedcgbhygtrefcdx m,lo09i8u7y6hujklop-0o9i87efd3b5b0e41733c7c2b543ce3eb1d1e933d0',
+        '0754c11b8e4512efd765943a44b97brgfvd dcecbgefdvfer3efdvr4efdeb968302ad7bea893bc4ef35da3a51f39efd3b5b0e41733c7c2b543ce3eb1d1e933d0',
+        '075vfwdvvvfrfbhnhydfvfedv44b9770d30c21ffab0a07d5447a21e07920b968302ad7bea893bc4ef35da3a51f39efd3b5b0e41733c7c2b543ce3eb1d1e933d0',
+        '0754c11b8e4512efrt4rgrbhy7ujkmnbvfde41ffab0a07d5447a21e07920b968302ad7bea893bc4ef35da3a51f39efd3b5b0e41733c7c2b543ce3eb1d1e933d0',
+        '0754c11b8e4512efdc765943a44b97efdbbfgedbedbfdbd5447a21e07920b968302ad7bea893bc4ef35da3a51f39efd3b5b0e41733c7c2b543ce3eb1d1e933d0',
+        '0754c11b8e4512efdc765943dbhedbfngjujujujujnhg7d5447a21e07920b968302ad7bea893bc4ef35da3a51f39efd3b5b0e41733c7c2b543ce3eb1d1e933d0',
+        '0754c11b8e4512efdc765943a44b9770d30c21ffab0a07d5447a21e07920b968302ad7bea893bc4ef35da3edfbehyjujujuyhjhbgfr5c2b543ce3eb1d1e933d0',
+        '0754c11b8e4512efdc765943a44b9770d30c21ffab0a07d5447a21e07920b968302ad7bea893bc4ef35da3a51f39efy4rfgnyrhnyhyhyujuj3ce3eb1d1e933d0',
+        '0754c11b8e4512efdc765943a44b9770d30c21ffab0a07d5447a21e07920b968302ad7bea893bc4ef35da3a51f39efd3tgrehtthngfdse43weazdfb1d1e933d0',
+        '0754c11b8e4512efdc765943a44b9770d30c21ffab0a07d5447a21e07920b968302ad7bea893bc4ef35da3a51f39efd3b5b0e412wsdxnhnhvgyhgu7kukikikik',
+        '0754c11b8e4512efdc765943a44b9770d30c21ffab0a07d5447a21e07920b968302ad7bea893bc4ef35da3a51f39efd3b5b0e417wsbgtqeggtegt234rfbhy65r',
+        '0754c11b8e4512efdc765943a44b9770d30c21ffab0a07d5447a21e07920b968302ad7bea893bc4ef35da3a51f39efd3b5bqsr4tgbhnh5tgvgce3eb1d1e933d0',
+        '0754c11b8e4512efdc765943srdty6y54e3456yhgfder56tygy67u898io9l9lksdvdvgbo9iujhfgrededefdfedefdfd3b5b0e41733c7c2b543ce3eb1d1e933d0',
+        '0754c11b8e4512efdc765943a44b9770d30c21ffab0a07d5447a21e07920b968302adfgtresxsdertyujhbvcxdserfd3b5b0e41733c7c2b543ce3eb1d1e933d0',
+        '0754c11b8e4512efdc765943a44b9770d30c21ffab0a07d5447a21e07920b968302addfdredfsaertyuikjnbvcdrttr3b5b0e41733c7c2b543ce3eb1d1e933d0',
+        '0754c11b8e4512efdc765943a44b9770d30c21ffab0a07d5447a21e07920b9683efgref3efdvevrvrvggbgtbhy39efd3b5b0e41733c7c2b543ce3eb1d1e933d0',
+        '0754c11b8e4512efdc765943a44b9770d30c21ffab0a07d5447a21e07920b968302ad7bea893bc4ef35da3a51f39efd3b5b0dbgedfvcerdferrdferfbgthnhyy',
+    ]
+    if( p > 60){
+      const {hash_full, time_shape} = this.state
+      this.setState({
+        time_shape_copy: time_shape,
+        hash_full_copy: hash_full,
+      })
+    }else{
+      this.setState({
+        time_shape_copy: time[p],
+        hash_full_copy: hash[p],
+      })
+      p++;
     }
   };
   
@@ -272,7 +415,7 @@ export class DashboardView extends Component {
      this.GetQueryString()
   }
   getSecond = () => { 
-    this.timer = setInterval(()=>this.getAmount(), 100)//数字
+    this.timer = setInterval(()=>this.getAmount(), 250)//数字
     i = 0
     this.setState({hash_left2: 'block',verify_progress:'block',verify_text_html: 'second'})
     this.getProgres('second')
@@ -357,11 +500,11 @@ export class DashboardView extends Component {
 
     const re_status = {
       error: {
-        text:'两组HASH值对比一致，仓单数据错误',
+        text:'HASH值对比完毕：两组HASH不一致，仓单数据和加佳有色链上数据不同',
         src: close
       },
       ok: {
-        text: '两组HASH值对比一致，仓单数据正确',
+        text: 'HASH值对比完毕：两组HASH完全一致，仓单数据和加佳有色链上数据完全相同',
         src: done
       }
     }
@@ -571,9 +714,9 @@ export class DashboardView extends Component {
                     </div>
                     <div>
                       <div style={{...verify_table_width1,...verify_td_left}}>
-                        <div style={{...verify_table_td,...verify_table_td_left}}>{this.state.time_shape}</div>
+                        <div style={{...verify_table_td,...verify_table_td_left}}>{this.state.time_shape_copy}</div>
                       </div>
-                      <div style={{...verify_table_td,...verify_table_left,...verify_table_width2}}>{this.state.hash_full}</div>
+                      <div style={{...verify_table_td,...verify_table_left,...verify_table_width2}}>{this.state.hash_full_copy}</div>
                     </div>
                   </div>
                   
@@ -611,10 +754,10 @@ export class DashboardView extends Component {
                 </div>
               </div>
               <div style={verify_block_right}>
-                <div style={{background:'rgb(255, 254, 205)',display: this.state.hash_block3}}>
+                <div style={{background:'#d6eeba',display: this.state.hash_block3}}>
                   <h2 style={{...verify_text_title,...verify_text_title_}}>验证结果：</h2>
-                  <img src = {re_status[result].src} style={{width:'40px',display:'block',margin:"0 auto"}}/>
-                  <h3 style={{marginBottom:'0',padding:'10px 42px',textAlign:'center',fontWeight:'noremal',color:"#333",fontSize:'14px',lineHeight:'1.4'}}>
+                  <img src = {re_status[result].src} style={{width:'30px',display:'block',margin:"0 auto"}}/>
+                  <h3 style={{marginBottom:'0',padding:'10px',textAlign:'center',fontWeight:'noremal',color:"#333",fontSize:'14px',lineHeight:'1.4'}}>
                     {re_status[result].text}
                   </h3>
                 </div>
@@ -624,11 +767,11 @@ export class DashboardView extends Component {
           </Card>
 
           <div style={{position:'fixed',zIndex: '1001',alignItems:'center',justifyContent:'center',left:0,right:0,top:0,bottom:0,display: this.state.verify_display}}>
-            <div style={{width:'423px',height:'150px',background:'#f2f2f2',border:'1px solid #d3d3d3',borderRadius:'2px',boxShadow:'0 0 16px 0 hsla(0,0%,77%,.5)',padding:'10px'}}>
-              <div style={{color:'#333',fontSize:'14px',padding:'5px 0',borderBottom:'1px solid #bebdc1',fontWeight:'bold',textAlign:'center'}}>
+            <div style={{width:'423px',height:'150px',background:'rgba(0,0,0,0.5)',border:'1px solid #d3d3d3',borderRadius:'2px',boxShadow:'0 0 16px 0 hsla(0,0%,77%,.5)',padding:'10px'}}>
+              <div style={{color:'#fff',fontSize:'14px',padding:'5px 0',borderBottom:'1px solid #bebdc1',fontWeight:'bold',textAlign:'center'}}>
                 区块链仓单验证
               </div>
-              <div style={{color:'#333',fontSize: '14px',padding: '10px 0',marginBottom: '7px',display:this.state.verify_hash_text}}>
+              <div style={{color:'#fff',fontSize: '14px',padding: '10px 0',marginBottom: '7px',display:this.state.verify_hash_text}}>
                 {verify_txt[verify_text_html]}
               </div>
               <div style={{display:this.state.verify_progress}}>
