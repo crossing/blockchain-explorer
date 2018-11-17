@@ -234,8 +234,7 @@ export class DashboardView extends Component {
           warehouse: obj.warehouse,
           salt: obj.salt,
           type: obj.type,
-          tx_id: obj.tx_id,
-          lock_weight: obj.lock_weight
+          tx_id: obj.tx_id
         }
         this.getData(obj_)
     // }
@@ -629,9 +628,10 @@ export class DashboardView extends Component {
             </CardTitle>
             <div style={verify_block}>
               <div style={verify_block_left}>
-                <div style={verify_info}>仓单编号：<span>{url_data.sindentureno || '-'}</span></div>
+                {/* <div style={verify_info}>仓单编号：<span>{url_data.sindentureno || '-'}</span></div> */}
                 <Row>
                   <Col sm="6" >
+                    <p style={verify_info}>仓单编号：<span>{url_data.sindentureno || '-'}</span></p>
                     <p style={verify_info}>仓库信息：<span>{url_data.warehouse_info || '-'}</span></p>
                     <p style={verify_info}>仓库名称：<span>{url_data.warehouse || '-'}</span></p>
                     <p style={verify_info}>库位：<span>{url_data.location || '-'}</span></p>
@@ -639,6 +639,7 @@ export class DashboardView extends Component {
                     <p style={verify_info}>入库重量：<span>{url_data.product_amount || '-'}</span></p>
                   </Col>
                   <Col sm="6">
+                    <p style={verify_info}>质押量：<span>{url_data.lock_weight || '0'}</span></p>
                     <p style={verify_info}>货主：<span>{url_data.cargo_owner || '-'}</span></p>
                     <p style={verify_info}>品名：<span>{url_data.product_name || '-'}</span></p>
                     <p style={verify_info}>省份：<span>{url_data.provinces || '-'}</span></p>
@@ -744,13 +745,13 @@ export class DashboardView extends Component {
               <div style={{...verify_block_left,...verify_block_left_three}}>
                 <div style={{paddingRight: '30px'}}>
                   <div style={{width: '50%',float:'left',boxSizing: 'border-box',paddingRight: '30px'}}>
-                    <p style={{color:'#666',fontSize: '12px',marginBottom: '0',paddingTop: '10px',height:'50px'}}>
+                    <p style={{color:'#666',fontSize: '12px',marginBottom: '0',height:'50px'}}>
                     根据货主提供的salt值仓单实时数据生成唯一的HASH值
                     </p>
                     <div style={verify_hash}>{this.state.hash_string}</div>
                   </div>
                   <div style={{width: '50%',float:'left'}}>
-                    <p style={{color:'#666',fontSize: '12px',marginBottom: '0',paddingTop: '10px',height:'50px'}}>
+                    <p style={{color:'#666',fontSize: '12px',marginBottom: '0',height:'50px'}}>
                     获取区块链上仓单最后一次更新时的HASH值
                     </p>
                     <div style={verify_hash}>{this.state.hash_full}</div>
