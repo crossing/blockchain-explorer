@@ -234,7 +234,8 @@ export class DashboardView extends Component {
           warehouse: obj.warehouse,
           salt: obj.salt,
           type: obj.type,
-          tx_id: obj.tx_id
+          tx_id: obj.tx_id,
+          lock_weight: obj.lock_weight
         }
         this.getData(obj_)
     // }
