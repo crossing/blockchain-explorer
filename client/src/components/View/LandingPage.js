@@ -5,7 +5,8 @@
 import React, { Component } from 'react';
 import Slider from 'react-slick';
 import { connect } from 'react-redux';
-import Logo from '../../static/images/Explorer_Logo.svg';
+// import Logo from '../../static/images/Explorer_Logo.svg';
+import Logo from '../../static/images/jiajia.png';
 import { chartOperations } from '../../state/redux/charts/'
 import { tableOperations } from '../../state/redux/tables/'
 import { chartSelectors } from '../../state/redux/charts/'
