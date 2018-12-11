@@ -450,7 +450,7 @@ export class DashboardView extends Component {
            hash_string: data.data.encrypt_string,
            result: code,
            last_block: data.data.latest_block,
-           time_shape: times
+           time_shape: times,
           })
       }.bind(this),
       error:function(e){
