@@ -392,15 +392,17 @@ export class DashboardView extends Component {
         '0754c11b8e4512efdc765943a44b9770d30c21ffab0a07d5447a21e07920b9683efgref3efdvevrvrvggbgtbhy39efd3b5b0e41733c7c2b543ce3eb1d1e933d0',
         '0754c11b8e4512efdc765943a44b9770d30c21ffab0a07d5447a21e07920b968302ad7bea893bc4ef35da3a51f39efd3b5b0dbgedfvcerdferrdferfbgthnhyy',
     ]
-    if( p > 60){
+    if( p > 38){
       const {hash_full, time_shape} = this.state
       this.setState({
         time_shape_copy: time_shape,
         hash_full_copy: hash_full,
       })
     }else{
+      var d = new Date(time[p]);
+      var times=d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate() + ' ' + d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds(); 
       this.setState({
-        time_shape_copy: time[p],
+        time_shape_copy: times,
         hash_full_copy: hash[p],
       })
       p++;
@@ -441,13 +443,14 @@ export class DashboardView extends Component {
         }else{
           code = 'error'
         }
-       
+        var d = new Date(data.data.timeshape);
+        var times=d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate() + ' ' + d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds(); 
          this.setState({
            hash_full:data.data.fullHash,
            hash_string: data.data.encrypt_string,
            result: code,
            last_block: data.data.latest_block,
-           time_shape: data.data.timeshape
+           time_shape: times
           })
       }.bind(this),
       error:function(e){
@@ -816,7 +819,7 @@ export class DashboardView extends Component {
               <div style={{padding: '5px 10px',marginBottom:'20px',fontSize:'14px'}}>  
               加佳有色链即将启动仓单验证流程，待验证仓单信息及SALT值合并生成HASH后，将与链上该笔仓单对应HASH值进行比对。是否继续？
               </div>
-              <div style={{textAlign:'center'}}>
+              <div style={{textAlign:'center', marginBottom: '20px'}}>
                 <Button variant="contained" color="primary" 
                 style={{fontSize: '14px',marginRight:'30px'}}
                 onClick={this.getContent.bind(this)}
