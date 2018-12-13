@@ -155,7 +155,7 @@ export class DashboardView extends Component {
       time_shape_copy: '',
       hash_full_copy: '',
       last_block: 0,
-      url_data: {}
+      url_data: {}, 
     };
     this.add = this.add.bind(this)
     this.getProgres = this.getProgres.bind(this)
@@ -176,7 +176,13 @@ export class DashboardView extends Component {
           this.setState({verify_progress: 'none',hash_block1: 'block',}) 
         }
         if(item === 'second'){
-          this.setState({verify_progress: 'none',hash_block2: 'block',})
+          const {hash_full, time_shape} = this.state
+          this.setState({
+            time_shape_copy: time_shape,
+            hash_full_copy: hash_full,
+            verify_progress: 'none',
+            hash_block2: 'block'
+          })
           clearInterval(this.timer)
         }
         if(item === 'three'){
@@ -258,7 +264,7 @@ export class DashboardView extends Component {
     }else{
       var a =  0
       if( this.state.verify_block_id[3] == 0){
-        a = 700
+        a = Math.floor(result/100)*100
         this.setState({verify_block_id: [a,a+1,a+2,a+3]})
       }else if(this.state.verify_block_id[3] == result){
         a =  result
@@ -392,22 +398,14 @@ export class DashboardView extends Component {
         '0754c11b8e4512efdc765943a44b9770d30c21ffab0a07d5447a21e07920b9683efgref3efdvevrvrvggbgtbhy39efd3b5b0e41733c7c2b543ce3eb1d1e933d0',
         '0754c11b8e4512efdc765943a44b9770d30c21ffab0a07d5447a21e07920b968302ad7bea893bc4ef35da3a51f39efd3b5b0dbgedfvcerdferrdferfbgthnhyy',
     ]
-    // console.log("定时器 第几次"+p)
-    if( p > 36){
-      const {hash_full, time_shape} = this.state
-      this.setState({
-        time_shape_copy: time_shape,
-        hash_full_copy: hash_full,
-      })
-    }else{
-      var d = new Date(time[p]);
-      var times=d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate() + ' ' + d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds(); 
-      this.setState({
-        time_shape_copy: times,
-        hash_full_copy: hash[p],
-      })
-      p++;
-    }
+     
+    var d = new Date(time[p]);
+    var times=d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate() + ' ' + d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds(); 
+    this.setState({
+      time_shape_copy: times,
+      hash_full_copy: hash[p],
+    })
+    p++;
   };
   
   getContent = () =>{
