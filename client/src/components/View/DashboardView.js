@@ -59,7 +59,8 @@ const dialogStyle = {
 }
 const verify_title = {
   fontSize: '14px',
-  color: '#333',
+  // color: '#333',
+  color: 'red',
   fontWeight: 'bold'
 }
 const verify_title_two = {
