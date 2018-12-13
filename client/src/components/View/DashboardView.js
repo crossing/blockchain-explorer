@@ -59,8 +59,7 @@ const dialogStyle = {
 }
 const verify_title = {
   fontSize: '14px',
-  // color: '#333',
-  color: 'red',
+  color: '#333',
   fontWeight: 'bold'
 }
 const verify_title_two = {
@@ -393,6 +392,7 @@ export class DashboardView extends Component {
         '0754c11b8e4512efdc765943a44b9770d30c21ffab0a07d5447a21e07920b9683efgref3efdvevrvrvggbgtbhy39efd3b5b0e41733c7c2b543ce3eb1d1e933d0',
         '0754c11b8e4512efdc765943a44b9770d30c21ffab0a07d5447a21e07920b968302ad7bea893bc4ef35da3a51f39efd3b5b0dbgedfvcerdferrdferfbgthnhyy',
     ]
+    console.log("定时器 第几次"+p)
     if( p > 38){
       const {hash_full, time_shape} = this.state
       this.setState({
