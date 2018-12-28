@@ -58,12 +58,15 @@ const dialogStyle = {
   color: '#666'
 }
 const verify_title = {
-  fontSize: '14px',
-  color: '#333',
-  fontWeight: 'bold'
+  fontSize: '12px',
+  color: '#007917',
+  fontWeight: 'bold',
+  fontFamily: "	Microsoft YaHei"
 }
 const verify_title_two = {
-  fontSize: '16px',
+  fontSize: '12px',
+  color: '#007917',
+  fontWeight: 'bold',
   marginBottom: '5px'
 }
 const verify_info = {
