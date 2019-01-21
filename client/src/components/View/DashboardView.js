@@ -245,6 +245,10 @@ export class DashboardView extends Component {
           type: obj.type,
           tx_id: obj.tx_id
         }
+        if(obj.encrypt_type === "3"){
+          obj_.supplier = obj.supplier;
+          obj_.new_stock_proof_number = obj.new_stock_proof_number;
+        }
         this.getData(obj_)
     // }
   }
@@ -503,25 +507,30 @@ export class DashboardView extends Component {
     this.setState({dialogContent: false});
   };
   render() {
-
+    const {result, verify_text_html,url_data} = this.state
+    let verifyText = "";
+    if(url_data.encrypt_typ === "3"){
+      verifyText = "过户";
+    } else if(url_data.encrypt_typ === "1"){
+      verifyText = "仓单";
+    }
     const re_status = {
       error: {
-        text:'HASH值对比完毕：两组HASH不一致，仓单数据和加佳有色链上数据不同',
+        text:`HASH值对比完毕：两组HASH不一致，${verifyText}数据和加佳有色链上数据不同`,
         src: close
       },
       ok: {
-        text: 'HASH值对比完毕：两组HASH完全一致，仓单数据和加佳有色链上数据完全相同',
+        text: `HASH值对比完毕：两组HASH完全一致，${verifyText}数据和加佳有色链上数据完全相同`,
         src: done
       }
     }
     const verify_txt = {
-      'first': '正在根据仓单信息和SALT值生成HASH...',
-      'second': '正在搜索该笔仓单链上的HASH值...',
-      'three': '仓单信息HASH值与链上HASH比对中...',
-      'ok': 'HASH值对比完毕：两组HASH完全一致，仓单数据和加佳有色链上数据完全相同',
-      'error': 'HASH值对比完毕：两组HASH不一致，仓单数据和加佳有色链上数据不同'
+      'first': `正在根据${verifyText}信息和SALT值生成HASH...`,
+      'second': `正在搜索该笔${verifyText}链上的HASH值...`,
+      'three': `${verifyText}信息HASH值与链上HASH比对中...`,
+      'ok': `HASH值对比完毕：两组HASH完全一致，${verifyText}数据和加佳有色链上数据完全相同`,
+      'error': `HASH值对比完毕：两组HASH不一致，${verifyText}数据和加佳有色链上数据不同`
     }
-    const {result, verify_text_html,url_data} = this.state
     if (this.state.hasDbError) {
       return (
         <div style={{ height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
@@ -626,7 +635,7 @@ export class DashboardView extends Component {
         >
           <Card style={verify_card}>
             <CardTitle style={{marginBottom:'5px'}}>
-              <span style={verify_title}>第一步：根据货主提供的salt值仓单实时数据生成唯一的HASH值</span>
+              <span style={verify_title}>第一步：根据货主提供的salt值{verifyText}实时数据生成唯一的HASH值</span>
               <button onClick={this.handleDialogClose_content} className="closeBtn">
                 <FontAwesome name="close" />
               </button>
@@ -636,7 +645,7 @@ export class DashboardView extends Component {
                 {/* <div style={verify_info}>仓单编号：<span>{url_data.sindentureno || '-'}</span></div> */}
                 <Row>
                   <Col sm="6" >
-                    <p style={verify_info}>仓单编号：<span>{url_data.sindentureno || '-'}</span></p>
+                    <p style={verify_info}>{verifyText}编号：<span>{url_data.sindentureno || '-'}</span></p>
                     <p style={verify_info}>仓库信息：<span>{url_data.warehouse_info || '-'}</span></p>
                     <p style={verify_info}>仓库名称：<span>{url_data.warehouse || '-'}</span></p>
                     <p style={verify_info}>库位：<span>{url_data.location || '-'}</span></p>
@@ -656,7 +665,7 @@ export class DashboardView extends Component {
               <div style={verify_block_right}>
                 <div style={verify_text}>
                   <div style={{display: this.state.hash_block1}}>
-                    <h2 style={verify_text_title}>根据货主提供的salt值仓单实时数据生成唯一的HASH值：</h2>
+                    <h2 style={verify_text_title}>根据货主提供的salt值{verifyText}实时数据生成唯一的HASH值：</h2>
                     <span>{this.state.hash_string}</span>
                   </div>
                 </div>
@@ -665,7 +674,7 @@ export class DashboardView extends Component {
             
             <div style={{...verify_block,...verify_block_second}}>
             <div style={{display: this.state.hash_left2}}>
-              <div style={verify_title_two}>第二步：获取区块链上仓单最后一次更新时的HASH值</div>
+              <div style={verify_title_two}>第二步：获取区块链上{verifyText}最后一次更新时的HASH值</div>
               <div style={verify_block_left}>
                 <div>
                   <div style={verify_block_ID}>
@@ -720,7 +729,7 @@ export class DashboardView extends Component {
                   <div style={verify_table}>
                     <div>
                       <div style={{...verify_table_th,...verify_table_width1}}>时间戳</div>
-                      <div style={{...verify_table_th,...verify_table_width2}}>仓单HASH</div>
+                      <div style={{...verify_table_th,...verify_table_width2}}>{verifyText}HASH</div>
                     </div>
                     <div>
                       <div style={{...verify_table_width1,...verify_td_left}}>
@@ -737,7 +746,7 @@ export class DashboardView extends Component {
               <div style={{...verify_block_right}}>
                 <div  style={{display: this.state.hash_block2}}>
                   <div style={{...verify_text,...verify_block_right_two}}>
-                    <h2 style={verify_text_title}>获取区块链上仓单最后一次更新时的HASH值：</h2>
+                    <h2 style={verify_text_title}>获取区块链上{verifyText}最后一次更新时的HASH值：</h2>
                     <span>{this.state.hash_full}</span>
                   </div>
                 </div>
@@ -751,13 +760,13 @@ export class DashboardView extends Component {
                 <div style={{paddingRight: '30px'}}>
                   <div style={{width: '50%',float:'left',boxSizing: 'border-box',paddingRight: '30px'}}>
                     <p style={{color:'#666',fontSize: '12px',marginBottom: '0',height:'50px'}}>
-                    根据货主提供的salt值仓单实时数据生成唯一的HASH值
+                    根据货主提供的salt值{verifyText}实时数据生成唯一的HASH值
                     </p>
                     <div style={verify_hash}>{this.state.hash_string}</div>
                   </div>
                   <div style={{width: '50%',float:'left'}}>
                     <p style={{color:'#666',fontSize: '12px',marginBottom: '0',height:'50px'}}>
-                    获取区块链上仓单最后一次更新时的HASH值
+                    获取区块链上{verifyText}最后一次更新时的HASH值
                     </p>
                     <div style={verify_hash}>{this.state.hash_full}</div>
                   </div>
@@ -779,7 +788,7 @@ export class DashboardView extends Component {
           <div style={{position:'fixed',zIndex: '1001',alignItems:'center',justifyContent:'center',left:0,right:0,top:0,bottom:0,display: this.state.verify_display}}>
             <div style={{width:'423px',height:'180px',background:'rgba(0,0,0,0.5)',border:'1px solid #d3d3d3',borderRadius:'2px',boxShadow:'0 0 16px 0 hsla(0,0%,77%,.5)',padding:'10px'}}>
               <div style={{color:'#fff',fontSize:'14px',padding:'5px 0',borderBottom:'1px solid #bebdc1',fontWeight:'bold',textAlign:'center'}}>
-                区块链仓单验证
+                区块链{verifyText}验证
               </div>
               <div style={{color:'#fff',fontSize: '14px',padding: '10px 0',marginBottom: '7px',display:this.state.verify_hash_text}}>
                 {verify_txt[verify_text_html]}
@@ -819,7 +828,7 @@ export class DashboardView extends Component {
           
             <div style={{width:'100%',height:'170px',background:'#f2f2f2',borderRadius:'2px',boxShadow:'0 0 16px 0 hsla(0,0%,77%,.5)',padding:'10px'}}>
               <div style={{padding: '5px 10px',marginBottom:'20px',fontSize:'14px'}}>  
-              加佳有色链即将启动仓单验证流程，待验证仓单信息及SALT值合并生成HASH后，将与链上该笔仓单对应HASH值进行比对。是否继续？
+              加佳有色链即将启{verifyText}验证流程，待验证{verifyText}信息及SALT值合并生成HASH后，将与链上该笔{verifyText}对应HASH值进行比对。是否继续？
               </div>
               <div style={{textAlign:'center', marginBottom: '20px'}}>
                 <Button variant="contained" color="primary" 
