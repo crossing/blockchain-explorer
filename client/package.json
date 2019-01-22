@@ -56,7 +56,7 @@
     "eject": "react-scripts eject",
     "lint": "eslint"
   },
-  "proxy": "http://139.196.71.210",
+  "proxy": "http://a68726bf91e0a11e9be1302ff9113962-115433349.cn-northwest-1.elb.amazonaws.com.cn",
   "devDependencies": {
     "babel-eslint": "^8.2.5",
     "enzyme": "^3.3.0",
